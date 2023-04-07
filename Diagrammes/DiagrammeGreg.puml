@@ -51,7 +51,6 @@ class Order {
     - date : date
     - ClientName : string
     - ClientLastName : string
-
 }
 
 ' stocke les informations sur la société
