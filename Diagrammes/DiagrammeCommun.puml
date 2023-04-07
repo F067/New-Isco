@@ -22,7 +22,7 @@ class Quote {
 }
 
 class Service {
-    -id: string
+    -id: int
     -catalogRef: int
     -EANCode: int
     -constructorRef: string
@@ -35,7 +35,7 @@ class Service {
 }
 
 class ITC {
-    -id: string
+    -id: int
     -lastName: string
     -firstName: string
     -quoteNumber: int
