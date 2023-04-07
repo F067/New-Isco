@@ -1,0 +1,62 @@
+@startuml NewIsco
+
+
+class Client {
+    - id : int
+    - firstName : string
+    - lastName : string
+    - address : string
+    - email : string
+    - phone : string
+}
+
+class Quote {
+    -id: int
+    -name: String
+    -date: Date
+    -type: String
+    -num_devis: int
+    -num_affaire: String
+    -status: String 
+    -offre: String
+}
+
+class Service {
+    -id: string
+    -catalogRef: int
+    -EANCode: int
+    -constructorRef: string
+    -supplierName: string
+    -quantity: int
+    -totalCostPriceExcludingVAT: float
+    -coef: float 
+    -totalSellingPriceExcludingVAT: float
+    +sellingPriceCalculation(): float
+}
+
+class ITC {
+    -id: string
+    -lastName: string
+    -firstName: string
+    -estimateNumber: int
+}
+
+class Interlocuteur {
+    -id: int
+    -civility: String
+    -lastName: String
+    -firstName: String
+    -email: String
+    -phone: int
+    -cellPhone: int
+    -type: String
+}
+
+Client "1" --> "1..*" Quote
+Client "*" -- "*" Interlocuteur
+Interlocuteur "1" --> "1..*" Quote
+Quote "*" -- "*" Service
+ITC "1" -- "1..*" Quote
+Interlocuteur "1..*" <-- "1" ITC
+
+@enduml
