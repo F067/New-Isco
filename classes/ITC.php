@@ -47,7 +47,7 @@ class ITC {
         $this->quoteNumber = $quoteNumber;
     }
 
-    // relation avec la Quote
+    // relation avec Quote
     public function addQuote(Quote $quote): void {
         $this->quotes[] = $quote;
     }
