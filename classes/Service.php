@@ -158,12 +158,16 @@ class Service
         return $this;
     }
 
-    public function totalSellingPriceExcludingVAT(float $totalCostPriceExcludingVAT, float $coef)
+    public function sellingPriceCalculation(float $totalCostPriceExcludingVAT, float $coef): float
     {
-
+        $result = $totalCostPriceExcludingVAT * $coef;
+        return $result;
+        var_dump($result);
     }
 
 }
 
 $service = new Service('#1', 123, 4456, 'ref567', 'ASCOM', 2, 22.45, 1.30, 31.67);
 var_dump($service);
+
+$service->sellingPriceCalculation(22, 45, 1, 30);
