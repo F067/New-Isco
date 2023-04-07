@@ -20,7 +20,6 @@ class Estimate {
     -estimateNumber: int
     -caseNumber: int
     -client: string
-    +estimateStatus(): status
 }
 
 class ITC {
