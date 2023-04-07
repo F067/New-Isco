@@ -1,0 +1,73 @@
+@startuml
+
+' contient des informations sur les clients
+
+class Client {
+    - id : int
+    - firstName : string
+    - lastName : string
+    - address : string
+    - email : string
+    - phone : string
+}
+
+' contient des informations sur les ITC
+
+class ITC {
+    - id : int
+    - firstName : string
+    - LastName : string
+    - email : string
+    - phone : string
+}
+
+' stocke les devis créés pour les clients
+
+class Quote {
+    - id : int
+    - clientAddress : string
+    - companyAddress : string
+    - creation_date : date
+    - transformation_date : date
+    - amount : float
+}
+
+' contient des informations sur les offres proposées dans les devis.
+
+class Offer {
+    - id : int
+    - clientName : string
+    - clientLastName : string
+    - offerDate : date
+    - clientAdress : string
+    - contentOffer : string
+}
+
+' lien entre les devis et les offres, (quelle offre a été proposée dans chaque devis)
+
+class Order {
+    - offer_id : int
+    - quote_id : int
+    - date : date
+    - ClientName : string
+    - ClientLastName : string
+
+}
+
+' stocke les informations sur la société
+
+class Company {
+    - id : int
+    - name : string
+    - address : string
+    - email : string
+    - phone : string
+}
+
+Client "1" -- "*" Quote
+ITC "1" -- "*" Quote
+Quote "1" -- "*" Order
+Offer "1" -- "*" Order
+Quote "*" -- "1" Company
+
+@enduml
