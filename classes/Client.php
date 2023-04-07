@@ -19,63 +19,63 @@ class Client {
     }
 
     public function getId() {
-        echo "ID: " . $this->id . "\n";
+        echo "ID: " . $this->id . "<br>";
         return $this->id;
     }
 
     public function getFirstName() {
-        echo "First Name: " . $this->firstName . "\n";
+        echo "First Name: " . $this->firstName . "<br>";
         return $this->firstName;
     }
 
     public function getLastName() {
-        echo "Last Name: " . $this->lastName . "\n";
+        echo "Last Name: " . $this->lastName . "<br>";
         return $this->lastName;
     }
 
     public function getAddress() {
-        echo "Address: " . $this->address . "\n";
+        echo "Address: " . $this->address . "<br>";
         return $this->address;
     }
 
     public function getEmail() {
-        echo "Email: " . $this->email . "\n";
+        echo "Email: " . $this->email . "<br>";
         return $this->email;
     }
 
     public function getPhone() {
-        echo "Phone: " . $this->phone . "\n";
+        echo "Phone: " . $this->phone . "<br>";
         return $this->phone;
     }
 
     public function setId($id) {
         $this->id = $id;
-        echo "ID set to: " . $id . "\n";
+        echo "ID set to: " . $id . "<br>";
     }
 
     public function setFirstName($firstName) {
         $this->firstName = $firstName;
-        echo "First Name set to: " . $firstName . "\n";
+        echo "First Name set to: " . $firstName . "<br>";
     }
 
     public function setLastName($lastName) {
         $this->lastName = $lastName;
-        echo "Last Name set to: " . $lastName . "\n";
+        echo "Last Name set to: " . $lastName . "<br>";
     }
 
     public function setAddress($address) {
         $this->address = $address;
-        echo "Address set to: " . $address . "\n";
+        echo "Address set to: " . $address . "<br>";
     }
 
     public function setEmail($email) {
         $this->email = $email;
-        echo "Email set to: " . $email . "\n";
+        echo "Email set to: " . $email . "<br>";
     }
 
     public function setPhone($phone) {
         $this->phone = $phone;
-        echo "Phone set to: " . $phone . "\n";
+        echo "Phone set to: " . $phone . "<br>";
     }
 
     public function addInterlocuteur(Interlocuteur $interlocuteur): void {
