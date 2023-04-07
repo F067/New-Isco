@@ -8,9 +8,9 @@ class Service
 {
 
     /**
-     * @var string id
+     * @var int id
      */
-    private string $id;
+    private int $id;
 
     /**
      * @var int catalogRef
@@ -66,7 +66,7 @@ class Service
 
     }
 
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }
@@ -166,7 +166,7 @@ class Service
 
 }
 
-$service = new Service('#1', 123, 4456, 'ref567', 'ASCOM', 2, 22.45, 1.30, 31.67);
+$service = new Service(1, 123, 4456, 'ref567', 'ASCOM', 2, 22.45, 1.30, 31.67);
 var_dump($service);
 
 var_dump($service->sellingPriceCalculation(22.45, 1.30));
