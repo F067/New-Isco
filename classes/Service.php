@@ -52,170 +52,118 @@ class Service
      */
     private float $totalSellingPriceExcludingVAT;
 
-    /**
-     * Display id
-     * @param void
-     * @return string
-     */
+    public function __construct($id, $catalogRef, $EANCode, $constructorRef, $supplierName, $quantity, $totalCostPriceExcludingVAT, $coef, $totalSellingPriceExcludingVAT)
+    {
+        $this->id = $id;
+        $this->catalogRef = $catalogRef;
+        $this->EANCode = $EANCode;
+        $this->constructorRef = $constructorRef;
+        $this->supplierName = $supplierName;
+        $this->quantity = $quantity;
+        $this->totalCostPriceExcludingVAT = $totalCostPriceExcludingVAT;
+        $this->coef = $coef;
+        $this->totalSellingPriceExcludingVAT = $totalSellingPriceExcludingVAT;
+
+    }
+
     public function getId(): string
     {
         return $this->id;
     }
-
-
-    /**
-     * Display catalogRef
-     * @param void
-     * @return int
-     */
     public function getCatalogRef(): int
     {
         return $this->catalogRef;
     }
 
-
-    /**
-     * Display EANCode
-     * @param void
-     * @return int
-     */
     public function getEANCode(): int
     {
         return $this->EANCode;
     }
 
-    /**
-     * Display constructorRef
-     * @param void
-     * @return string
-     */
     public function getConstructorRef(): string
     {
         return $this->constructorRef;
     }
 
-    /**
-     * Display supplierName
-     * @param void
-     * @return string
-     */
     public function getSupplierName(): string
     {
         return $this->supplierName;
     }
 
-    /**
-     * Display quantity
-     * @param void
-     * @return int
-     */
     public function getQuantity(): int
     {
         return $this->quantity;
     }
 
-    /**
-     * Display totalCostPriceExcludingVAT
-     * @param void
-     * @return float
-     */
     public function getTotalCostPriceExcludingVAT(): float
     {
         return $this->totalCostPriceExcludingVAT;
     }
 
-    /**
-     * Display coef
-     * @param void
-     * @return float
-     */
     public function getCoef(): float
     {
         return $this->coef;
     }
 
-    /**
-     * Display totalSellingPriceExcludingVAT
-     * @param void
-     * @return float
-     */
     public function getTotalSellingPriceExcludingVAT(): float
     {
         return $this->totalSellingPriceExcludingVAT;
     }
 
-
-    /**
-     * Set the value of catalogRef
-     */
     public function setCatalogRef(int $catalogRef): self
     {
         $this->catalogRef = $catalogRef;
         return $this;
     }
 
-    /**
-     * Set the value of EANCode
-     */
     public function setEANCode(int $EANCode): self
     {
         $this->EANCode = $EANCode;
         return $this;
     }
 
-    /**
-     * Set the value of constructorRef
-     */
     public function setConstructorRef(string $constructorRef): self
     {
         $this->constructorRef = $constructorRef;
         return $this;
     }
 
-    /**
-     * Set the value of supplierName
-     */
     public function setSupplierName(string $supplierName): self
     {
         $this->supplierName = $supplierName;
         return $this;
     }
 
-    /**
-     * Set the value of quantity
-     */
     public function setQuantity(int $quantity): self
     {
         $this->quantity = $quantity;
         return $this;
     }
 
-    /**
-     * Set the value of totalCostPriceExcludingVAT
-     */
     public function setTotalCostPriceExcludingVAT(float $totalCostPriceExcludingVAT): self
     {
         $this->totalCostPriceExcludingVAT = $totalCostPriceExcludingVAT;
         return $this;
     }
 
-    /**
-     * Set the value of coef
-     */
     public function setCoef(float $coef): self
     {
         $this->coef = $coef;
         return $this;
     }
 
-    /**
-     * Set the value of totalSellingPriceExcludingVAT
-     */
     public function setTotalSellingPriceExcludingVAT(float $totalSellingPriceExcludingVAT): self
     {
         $this->totalSellingPriceExcludingVAT = $totalSellingPriceExcludingVAT;
         return $this;
     }
 
+    public function totalSellingPriceExcludingVAT(float $totalCostPriceExcludingVAT, float $coef)
+    {
+
+    }
 
 }
+
+$service = new Service('#1', 123, 4456, 'ref567', 'ASCOM', 2, 22.45, 1.30, 31.67);
+var_dump($service);
