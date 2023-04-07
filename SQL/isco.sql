@@ -1,161 +1,155 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Apr 07, 2023 at 03:55 PM
+-- Server version: 8.0.31
+-- PHP Version: 8.2.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
--- -----------------------------------------------------
--- Table `Client`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `Client` ;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-CREATE TABLE IF NOT EXISTS `Client` (
-  `id` INT NOT NULL,
-  `firstName` VARCHAR(45) NULL,
-  `lastName` VARCHAR(45) NULL,
-  `address` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `phone` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-;
+--
+-- Database: `isco`
+--
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `Service`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `Service` ;
+--
+-- Table structure for table `client`
+--
 
-CREATE TABLE IF NOT EXISTS `Service` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `catalogRef` INT NULL,
-  `EANCode` INT NULL,
-  `constructorRef` VARCHAR(45) NULL,
-  `supplierName` VARCHAR(45) NULL,
-  `quantity` INT NULL,
-  `totalCostPriceExcludingVAT` DECIMAL(25) NULL,
-  `coef` DECIMAL(25) NULL,
-  `totalSellingPriceExcludingVAT` DECIMAL(25) NULL,
-  PRIMARY KEY (`id`))
-;
+DROP TABLE IF EXISTS `client`;
+CREATE TABLE IF NOT EXISTS `client` (
+  `id` int NOT NULL,
+  `firstName` varchar(45) DEFAULT NULL,
+  `lastName` varchar(45) DEFAULT NULL,
+  `address` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `phone` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `Interlocuteur`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `Interlocuteur` ;
+--
+-- Table structure for table `interlocuteur`
+--
 
-CREATE TABLE IF NOT EXISTS `Interlocuteur` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `civility` VARCHAR(45) NULL,
-  `lastName` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `phone` VARCHAR(45) NULL,
-  `firstName` VARCHAR(45) NULL,
-  `cellPhone` VARCHAR(45) NULL,
-  `type` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-;
+DROP TABLE IF EXISTS `interlocuteur`;
+CREATE TABLE IF NOT EXISTS `interlocuteur` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `civility` varchar(45) DEFAULT NULL,
+  `lastName` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `phone` varchar(45) DEFAULT NULL,
+  `firstName` varchar(45) DEFAULT NULL,
+  `cellPhone` varchar(45) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `ITC`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `ITC` ;
+--
+-- Table structure for table `interlocuteur_has_client`
+--
 
-CREATE TABLE IF NOT EXISTS `ITC` (
-  `id` INT NOT NULL,
-  `lastName` VARCHAR(45) NULL,
-  `firstName` VARCHAR(45) NULL,
-  `quoteNumber` VARCHAR(45) NULL,
-  `Interlocuteur_id` INT NOT NULL,
+DROP TABLE IF EXISTS `interlocuteur_has_client`;
+CREATE TABLE IF NOT EXISTS `interlocuteur_has_client` (
+  `Interlocuteur_id` int NOT NULL,
+  `Client_id` int NOT NULL,
+  PRIMARY KEY (`Interlocuteur_id`,`Client_id`),
+  KEY `fk_Interlocuteur_has_Client_Client1_idx` (`Client_id`),
+  KEY `fk_Interlocuteur_has_Client_Interlocuteur1_idx` (`Interlocuteur_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `itc`
+--
+
+DROP TABLE IF EXISTS `itc`;
+CREATE TABLE IF NOT EXISTS `itc` (
+  `id` int NOT NULL,
+  `lastName` varchar(45) DEFAULT NULL,
+  `firstName` varchar(45) DEFAULT NULL,
+  `quoteNumber` varchar(45) DEFAULT NULL,
+  `Interlocuteur_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_ITC_Interlocuteur1_idx` (`Interlocuteur_id` ASC) VISIBLE,
-  CONSTRAINT `fk_ITC_Interlocuteur1`
-    FOREIGN KEY (`Interlocuteur_id`)
-    REFERENCES `Interlocuteur` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-;
+  KEY `fk_ITC_Interlocuteur1_idx` (`Interlocuteur_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `Quote`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `Quote` ;
+--
+-- Table structure for table `quote`
+--
 
-CREATE TABLE IF NOT EXISTS `Quote` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  `date` VARCHAR(45) NULL,
-  `type` VARCHAR(45) NULL,
-  `num_devis` INT NULL,
-  `num_affaire` VARCHAR(45) NULL,
-  `status` VARCHAR(45) NULL,
-  `offre` VARCHAR(45) NULL,
-  `Client_id` INT NOT NULL,
-  `Interlocuteur_id` INT NOT NULL,
-  `ITC_id` INT NOT NULL,
+DROP TABLE IF EXISTS `quote`;
+CREATE TABLE IF NOT EXISTS `quote` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `date` varchar(45) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
+  `num_devis` int DEFAULT NULL,
+  `num_affaire` varchar(45) DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  `offre` varchar(45) DEFAULT NULL,
+  `Client_id` int NOT NULL,
+  `Interlocuteur_id` int NOT NULL,
+  `ITC_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Quote_Client_idx` (`Client_id` ASC) VISIBLE,
-  INDEX `fk_Quote_Interlocuteur1_idx` (`Interlocuteur_id` ASC) VISIBLE,
-  INDEX `fk_Quote_ITC1_idx` (`ITC_id` ASC) VISIBLE,
-  CONSTRAINT `fk_Quote_Client`
-    FOREIGN KEY (`Client_id`)
-    REFERENCES `Client` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Quote_Interlocuteur1`
-    FOREIGN KEY (`Interlocuteur_id`)
-    REFERENCES `Interlocuteur` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Quote_ITC1`
-    FOREIGN KEY (`ITC_id`)
-    REFERENCES `ITC` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-;
+  KEY `fk_Quote_Client_idx` (`Client_id`),
+  KEY `fk_Quote_Interlocuteur1_idx` (`Interlocuteur_id`),
+  KEY `fk_Quote_ITC1_idx` (`ITC_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `Interlocuteur_has_Client`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `Interlocuteur_has_Client` ;
+--
+-- Table structure for table `quote_has_service`
+--
 
-CREATE TABLE IF NOT EXISTS `Interlocuteur_has_Client` (
-  `Interlocuteur_id` INT NOT NULL,
-  `Client_id` INT NOT NULL,
-  PRIMARY KEY (`Interlocuteur_id`, `Client_id`),
-  INDEX `fk_Interlocuteur_has_Client_Client1_idx` (`Client_id` ASC) VISIBLE,
-  INDEX `fk_Interlocuteur_has_Client_Interlocuteur1_idx` (`Interlocuteur_id` ASC) VISIBLE,
-  CONSTRAINT `fk_Interlocuteur_has_Client_Interlocuteur1`
-    FOREIGN KEY (`Interlocuteur_id`)
-    REFERENCES `Interlocuteur` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Interlocuteur_has_Client_Client1`
-    FOREIGN KEY (`Client_id`)
-    REFERENCES `Client` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-;
+DROP TABLE IF EXISTS `quote_has_service`;
+CREATE TABLE IF NOT EXISTS `quote_has_service` (
+  `Quote_id` int NOT NULL,
+  `Service_id` int NOT NULL,
+  PRIMARY KEY (`Quote_id`,`Service_id`),
+  KEY `fk_Quote_has_Service_Service1_idx` (`Service_id`),
+  KEY `fk_Quote_has_Service_Quote1_idx` (`Quote_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `Quote_has_Service`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `Quote_has_Service` ;
+--
+-- Table structure for table `service`
+--
 
-CREATE TABLE IF NOT EXISTS `Quote_has_Service` (
-  `Quote_id` INT NOT NULL,
-  `Service_id` INT NOT NULL,
-  PRIMARY KEY (`Quote_id`, `Service_id`),
-  INDEX `fk_Quote_has_Service_Service1_idx` (`Service_id` ASC) VISIBLE,
-  INDEX `fk_Quote_has_Service_Quote1_idx` (`Quote_id` ASC) VISIBLE,
-  CONSTRAINT `fk_Quote_has_Service_Quote1`
-    FOREIGN KEY (`Quote_id`)
-    REFERENCES `Quote` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Quote_has_Service_Service1`
-    FOREIGN KEY (`Service_id`)
-    REFERENCES `Service` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-;
+DROP TABLE IF EXISTS `service`;
+CREATE TABLE IF NOT EXISTS `service` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `catalogRef` int DEFAULT NULL,
+  `EANCode` int DEFAULT NULL,
+  `constructorRef` varchar(45) DEFAULT NULL,
+  `supplierName` varchar(45) DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
+  `totalCostPriceExcludingVAT` decimal(25,0) DEFAULT NULL,
+  `coef` decimal(25,0) DEFAULT NULL,
+  `totalSellingPriceExcludingVAT` decimal(25,0) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
