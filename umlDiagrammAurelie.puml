@@ -30,12 +30,6 @@ class ITC {
     -estimateNumber: int
 }
 
-class Offer {
-    -id: string
-    -lastName: string
-    -firstName: string
-}
-
 class Material {
     -id: string
     -catalogRef: int
