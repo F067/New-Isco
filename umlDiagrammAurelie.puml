@@ -1,0 +1,56 @@
+@startuml
+
+class Client {
+    -id: string
+    -number: int
+    -companyName: string
+    -civility: string
+    -lastName: string
+    -firstName: string
+    -email: string
+    -phone: int
+    -cellPhone: int
+}
+
+class Estimate {
+    -id: string
+    -entitled: string
+    -date: DateTime
+    -status: string
+    -estimateNumber: int
+    -caseNumber: int
+    -client: string
+    +estimateStatus(): status
+}
+
+class ITC {
+    -id: string
+    -lastName: string
+    -firstName: string
+    -estimateNumber: int
+}
+
+class Offer {
+    -id: string
+    -lastName: string
+    -firstName: string
+}
+
+class Material {
+    -id: string
+    -catalogRef: int
+    -EANCode: int
+    -constructorRef: string
+    -supplierName: string
+    -quantity: int
+    -totalCostPriceExcludingVAT: float
+    -coef: float 
+    -totalSellingPriceExcludingVAT: float
+    +sellingPriceCalculation(): float
+}
+
+Client "1" -- "1" Estimate
+ITC "1" -- "1..*" Estimate 
+ITC "1" -- "1..*" Material 
+
+@enduml
