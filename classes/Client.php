@@ -1,4 +1,5 @@
 <?php
+include_once("Interlocuteur.php");
 class Client {
     private $id;
     private $firstName;
@@ -19,7 +20,7 @@ class Client {
     }
 
     public function getId() {
-        echo "ID: " . $this->id . "<br>";
+        // echo "ID: " . $this->id . "\n";
         return $this->id;
     }
 
@@ -87,25 +88,25 @@ class Client {
     }
 }
 
-$client = new Client(1, "Gregory", "Foïs", "32 Rue de la rue", "Greg@example.com", "06-06-06-06-06");
+// $client = new Client(1, "Gregory", "Foïs", "32 Rue de la rue", "Greg@example.com", "06-06-06-06-06");
 
-$client->getId();
-$client->getFirstName();
-$client->getLastName();
-$client->getAddress();
-$client->getEmail();
-$client->getPhone();
+// $client->getId();
+// $client->getFirstName();
+// $client->getLastName();
+// $client->getAddress();
+// $client->getEmail();
+// $client->getPhone();
 
-$client->setId(2);
-$client->setFirstName("Sundus");
-$client->setLastName("Al Kebsi");
-$client->setAddress("33 Rue de la rue");
-$client->setEmail("sandwich@example.com");
-$client->setPhone("07-07-07-07-07");
+// $client->setId(2);
+// $client->setFirstName("Sundus");
+// $client->setLastName("Al Kebsi");
+// $client->setAddress("33 Rue de la rue");
+// $client->setEmail("sandwich@example.com");
+// $client->setPhone("07-07-07-07-07");
 
-$client->getId();
-$client->getFirstName();
-$client->getLastName();
-$client->getAddress();
-$client->getEmail();
-$client->getPhone();
+// $client->getId();
+// $client->getFirstName();
+// $client->getLastName();
+// $client->getAddress();
+// $client->getEmail();
+// $client->getPhone();
