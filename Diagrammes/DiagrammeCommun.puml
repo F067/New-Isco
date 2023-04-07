@@ -1,4 +1,4 @@
-@startuml
+@startuml NewIsco
 
 
 class Client {
@@ -38,7 +38,7 @@ class ITC {
     -id: string
     -lastName: string
     -firstName: string
-    -estimateNumber: int
+    -quoteNumber: int
 }
 
 class Interlocuteur {
