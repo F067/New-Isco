@@ -22,7 +22,7 @@ class Quote {
 }
 
 class Service {
-    -id: int
+    -id: string
     -catalogRef: int
     -EANCode: int
     -constructorRef: string
@@ -35,10 +35,10 @@ class Service {
 }
 
 class ITC {
-    -id: int
+    -id: string
     -lastName: string
     -firstName: string
-    -quoteNumber: int
+    -estimateNumber: int
 }
 
 class Interlocuteur {
@@ -56,7 +56,7 @@ Client "1" --> "1..*" Quote
 Client "*" -- "*" Interlocuteur
 Interlocuteur "1" --> "1..*" Quote
 Quote "*" -- "*" Service
-ITC "1" --> "1..*" Quote
+ITC "1" -- "1..*" Quote
 Interlocuteur "1..*" <-- "1" ITC
 
 @enduml

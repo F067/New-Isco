@@ -8,6 +8,8 @@ class Interlocuteur {
     private $phone;
     private $cellPhone;
     private $type;
+    private array $itc;
+
 
     public function __construct($id, $civility, $lastName, $firstName, $email, $phone, $cellPhone, $type) {
         $this->id = $id;
@@ -18,6 +20,9 @@ class Interlocuteur {
         $this->phone = $phone;
         $this->cellPhone = $cellPhone;
         $this->type = $type;
+        $this->itc = [];
+
+
     }
     public function getId() {
         return $this->id;
@@ -83,6 +88,13 @@ class Interlocuteur {
         $this->type = $type;
     }
 
-   
+      // relation avec la Quote
+      public function addItc(ITC $itc): void {
+        $this->itc[] = $itc;
+    }
+
+    public function getItc(): array {
+        return $this->itc;
+    }
    
 }
