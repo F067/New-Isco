@@ -56,7 +56,7 @@ Client "1" --> "1..*" Quote
 Client "*" -- "*" Interlocuteur
 Interlocuteur "1" --> "1..*" Quote
 Quote "*" -- "*" Service
-ITC "1" -- "1..*" Quote
+ITC "1" --> "1..*" Quote
 Interlocuteur "1..*" <-- "1" ITC
 
 @enduml
